@@ -1,0 +1,15 @@
+# Ambiente virtuale
+ambiente_virtuale/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# File di sistema
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Variabili ambiente
+.env
