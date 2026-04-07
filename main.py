@@ -49,6 +49,74 @@ personalita = {
 }
 
 # ==============================
+# FASE EXTRA – GENERAZIONE DESCRIZIONE AVANZATA
+# ==============================
+
+# Questa funzione crea una descrizione testuale più naturale e coinvolgente
+# basata sui valori inseriti dall’utente.
+# L'obiettivo è simulare una spiegazione "umana" della personalità combinando
+# i diversi tratti (socialità, creatività, ecc.) in una narrazione coerente
+
+def genera_descrizione_avanzata(nome, s, c, o, r, e, tipo):
+    
+    # Lista che conterrà le frasi descrittive dei tratti principali
+    tratti = []
+
+    # ==============================
+    # ANALISI DEI SINGOLI TRATTI
+    # ==============================
+
+    # Socialità: misura quanto una persona è estroversa o riservata
+    if s > 7:
+        tratti.append("ami stare al centro delle interazioni sociali")
+    elif s < 4:
+        tratti.append("tendi a preferire ambienti più tranquilli e selettivi")
+
+    # Creatività: capacità di pensiero originale e immaginazione
+    if c > 7:
+        tratti.append("possiedi una forte immaginazione e pensiero creativo")
+    elif c < 4:
+        tratti.append("hai un approccio pratico e concreto alle situazioni")
+
+    # Organizzazione: livello di struttura, disciplina e pianificazione
+    if o > 7:
+        tratti.append("sei estremamente organizzato e orientato agli obiettivi")
+    elif o < 4:
+        tratti.append("preferisci flessibilità e spontaneità rispetto alla rigidità")
+
+    # Propensione al rischio: quanto una persona è incline a rischiare
+    if r > 7:
+        tratti.append("sei attratto dalle sfide e dal rischio")
+    elif r < 4:
+        tratti.append("valuti attentamente le decisioni evitando rischi inutili")
+
+    # Energia: livello di vitalità e dinamismo
+    if e > 7:
+        tratti.append("hai un livello di energia molto alto e trascinante")
+    elif e < 4:
+        tratti.append("gestisci le tue energie in modo più riflessivo e controllato")
+
+    # ==============================
+    # COSTRUZIONE DEL TESTO FINALE
+    # ==============================
+
+    # Introduzione personalizzata con nome e tipo di personalità
+    testo = f"{nome}, il tuo profilo '{tipo}' racconta una personalità unica. "
+
+    # Se abbiamo almeno un tratto rilevante, lo trasformiamo in frase fluida
+    if tratti:
+        testo += "In particolare, " + ", ".join(tratti[:-1])
+        if len(tratti) > 1:
+            testo += " e " + tratti[-1]
+        else:
+            testo += tratti[0]
+
+    # Chiusura narrativa per rendere il testo più naturale e completo
+    testo += ". Questo mix di caratteristiche definisce il tuo modo distintivo di affrontare il mondo, le relazioni e le sfide quotidiane."
+
+    return testo
+
+# ==============================
 # FASE 4 – INTERFACCIA STREAMLIT
 # ==============================
 
@@ -88,6 +156,27 @@ if st.button("Scopri il tuo tipo"):   # Tutto il blocco viene eseguito solo quan
     # Mostro il risultato all'utente con un messaggio evidenziato e la descrizione della personalità
     st.success(f"{nome}, il tuo tipo di personalità è: {tipo}")
     st.write(descrizione)
+
+    # ==============================
+    # ANALISI APPROFONDITA PERSONALIZZATA
+    # ==============================
+
+    # Genero una descrizione più dettagliata e narrativa basata sui valori inseriti
+    descrizione_avanzata = genera_descrizione_avanzata(
+        nome,
+        socialita,
+        creativita,
+        organizzazione,
+        rischio,
+        energia,
+        tipo
+    )
+
+    # Mostro una sezione dedicata per distinguere l'analisi avanzata dal risultato base
+    st.write("### 🔍 Analisi approfondita")
+
+    # Visualizzo il testo generato, che combina i vari tratti in una spiegazione fluida
+    st.write(descrizione_avanzata)
 
     # ==============================
     # FASE 6 – VISUALIZZAZIONE RADAR
