@@ -1,11 +1,11 @@
 # ==============================
 # IMPORT DELLE LIBRERIE
 # ==============================
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import streamlit as st
-from sklearn.cluster import KMeans
+import numpy as np                      # per generare dati numerici casuali
+import pandas as pd                     # per creare e gestire un dataset
+import matplotlib.pyplot as plt         # per visualizzare grafici
+import streamlit as st                  #per l'interfaccia utente
+from sklearn.cluster import KMeans      # per il clustering (KMeans)
 
 # ==============================
 # FASE 1 – CREAZIONE DATASET
@@ -71,30 +71,40 @@ def genera_descrizione_avanzata(nome, s, c, o, r, e, tipo):
         tratti.append("ami stare al centro delle interazioni sociali")
     elif s < 4:
         tratti.append("tendi a preferire ambienti più tranquilli e selettivi")
+    else:
+        tratti.append("hai un buon equilibrio tra socialità e momenti di riservatezza")
 
     # Creatività: capacità di pensiero originale e immaginazione
     if c > 7:
         tratti.append("possiedi una forte immaginazione e pensiero creativo")
     elif c < 4:
         tratti.append("hai un approccio pratico e concreto alle situazioni")
+    else:
+        tratti.append("hai un buon equilibrio tra creatività e pragmatismo")
 
     # Organizzazione: livello di struttura, disciplina e pianificazione
     if o > 7:
         tratti.append("sei estremamente organizzato e orientato agli obiettivi")
     elif o < 4:
         tratti.append("preferisci flessibilità e spontaneità rispetto alla rigidità")
+    else:
+        tratti.append("riesci a bilanciare organizzazione e flessibilità in modo efficace")
 
     # Propensione al rischio: quanto una persona è incline a rischiare
     if r > 7:
         tratti.append("sei attratto dalle sfide e dal rischio")
     elif r < 4:
         tratti.append("valuti attentamente le decisioni evitando rischi inutili")
+    else:
+        tratti.append("hai un approccio equilibrato tra prudenza e voglia di metterti in gioco")
 
     # Energia: livello di vitalità e dinamismo
     if e > 7:
         tratti.append("hai un livello di energia molto alto e trascinante")
     elif e < 4:
         tratti.append("gestisci le tue energie in modo più riflessivo e controllato")
+    else:
+        tratti.append("mantieni un livello di energia stabile e ben distribuito")
 
     # ==============================
     # COSTRUZIONE DEL TESTO FINALE
